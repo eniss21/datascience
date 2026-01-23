@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Support Assistant</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                        <line x1="9" y1="9" x2="9.01" y2="9"/>
+                        <line x1="15" y1="9" x2="15.01" y2="9"/>
+                    </svg>
+                </div>
+                <span class="logo-text">Support AI</span>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Model Settings</h3>
+                <div class="model-cards">
+                    <label class="model-card" data-model="tfidf">
+                        <input type="radio" name="model" value="tfidf" checked>
+                        <div class="model-card-content">
+                            <span class="model-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                                </svg>
+                            </span>
+                            <span class="model-name">TF-IDF</span>
+                            <span class="model-desc">Fast & Lightweight</span>
+                        </div>
+                    </label>
+                    <label class="model-card" data-model="semantic">
+                        <input type="radio" name="model" value="semantic">
+                        <div class="model-card-content">
+                            <span class="model-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="3"/>
+                                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                                </svg>
+                            </span>
+                            <span class="model-name">Semantic</span>
+                            <span class="model-desc">Context-Aware</span>
+                        </div>
+                    </label>
+                    <label class="model-card" data-model="rnn">
+                        <input type="radio" name="model" value="rnn">
+                        <div class="model-card-content">
+                            <span class="model-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2a10 10 0 1 0 10 10"/>
+                                    <path d="M12 12l8-8"/>
+                                    <path d="M12 2v4"/>
+                                    <path d="M2 12h4"/>
+                                </svg>
+                            </span>
+                            <span class="model-name">RNN</span>
+                            <span class="model-desc">Deep Learning</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Options</h3>
+                <label class="toggle-option">
+                    <span>Debug Mode</span>
+                    <input type="checkbox" id="debugToggle">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="status-indicator" id="statusIndicator">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Checking...</span>
+                </div>
+                <button class="clear-btn" onclick="clearChat()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+                    </svg>
+                    Clear Chat
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-main">
+            <!-- Mobile Header -->
+            <header class="mobile-header">
+                <button class="menu-btn" onclick="toggleSidebar()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"/>
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <line x1="3" y1="18" x2="21" y2="18"/>
+                    </svg>
+                </button>
+                <h1 class="mobile-title">Support AI</h1>
+                <div class="mobile-model-badge" id="mobileModelBadge">TF-IDF</div>
+            </header>
+
+            <!-- Messages Container -->
+            <div class="messages-container" id="chatMessages">
+                <!-- Welcome Message -->
+                <div class="welcome-section" id="welcomeSection">
+                    <div class="welcome-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                            <line x1="9" y1="9" x2="9.01" y2="9"/>
+                            <line x1="15" y1="9" x2="15.01" y2="9"/>
+                        </svg>
+                    </div>
+                    <h2 class="welcome-title">How can I help you today?</h2>
+                    <p class="welcome-subtitle">I'm your e-commerce support assistant. Ask me about orders, shipping, returns, and more.</p>
+
+                    <div class="quick-actions">
+                        <button class="quick-action" onclick="sendQuickMessage('Where is my order?')">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="1" y="3" width="15" height="13"/>
+                                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+                                <circle cx="5.5" cy="18.5" r="2.5"/>
+                                <circle cx="18.5" cy="18.5" r="2.5"/>
+                            </svg>
+                            Track Order
+                        </button>
+                        <button class="quick-action" onclick="sendQuickMessage('How do I return an item?')">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="1 4 1 10 7 10"/>
+                                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+                            </svg>
+                            Return Item
+                        </button>
+                        <button class="quick-action" onclick="sendQuickMessage('I need help with payment')">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                                <line x1="1" y1="10" x2="23" y2="10"/>
+                            </svg>
+                            Payment Help
+                        </button>
+                        <button class="quick-action" onclick="sendQuickMessage('I have a complaint')">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                            </svg>
+                            File Complaint
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-area">
+                <div class="input-wrapper">
+                    <input
+                        type="text"
+                        id="userInput"
+                        placeholder="Type your message..."
+                        autocomplete="off"
+                    >
+                    <button class="send-btn" id="sendButton" onclick="sendMessage()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"/>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                        </svg>
+                    </button>
+                </div>
+                <p class="input-hint">Press Enter to send</p>
+            </div>
+        </main>
+
+        <!-- Debug Panel (Slide-in) -->
+        <div class="debug-drawer" id="debugDrawer">
+            <div class="debug-header">
+                <h3>Debug Information</h3>
+                <button class="close-debug" onclick="closeDebug()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="debug-content" id="debugContent">
+                <p class="debug-placeholder">Send a message to see debug information</p>
+            </div>
+        </div>
+
+        <!-- Overlay for mobile sidebar -->
+        <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

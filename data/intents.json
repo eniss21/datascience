@@ -1,0 +1,560 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi", "Hello", "Hey", "Good morning", "Good afternoon", "Good evening",
+        "What's up", "Hi there", "Hello there", "Howdy", "Greetings", "Hey there",
+        "Good day", "Hiya", "Yo", "Sup", "Hello!", "Hi!", "Hey!", "Morning",
+        "Afternoon", "Evening", "What's going on", "How are you", "How's it going",
+        "Nice to meet you", "Pleased to meet you", "Hey buddy", "Hello friend",
+        "Hi friend", "Hey man", "Hello bot", "Hi bot", "Hey bot", "Hola",
+        "Bonjour", "Whats up", "Wassup", "Heya", "Hii", "Helloo", "Hellooo",
+        "Anyone there", "Is anyone there", "Are you there", "Hello anyone"
+      ],
+      "responses": [
+        "Hello! Welcome to our store. How can I help you today?",
+        "Hi there! How may I assist you?",
+        "Hey! What can I do for you today?",
+        "Hello! I'm here to help with your shopping needs."
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "Bye", "Goodbye", "See you", "See ya", "Take care", "Bye bye", "Later",
+        "Thanks bye", "Thank you goodbye", "That's all", "I'm done", "Nothing else",
+        "Catch you later", "Peace out", "Gotta go", "I have to go", "I need to go",
+        "See you later", "See you soon", "Until next time", "Talk to you later",
+        "Have a good day", "Have a nice day", "Good night", "Goodnight", "Night",
+        "I'm leaving", "I'll be going", "Farewell", "Adios", "Ciao", "Bye for now",
+        "That's all I needed", "I'm all set", "All done", "Done for now"
+      ],
+      "responses": [
+        "Goodbye! Thank you for shopping with us!",
+        "Bye! Have a great day!",
+        "Thank you for visiting! See you soon!",
+        "Take care! Feel free to come back anytime."
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "Thanks", "Thank you", "Thanks a lot", "Thank you so much", "I appreciate it",
+        "Thanks for your help", "That's helpful", "You're helpful", "Much appreciated",
+        "Thanks for the help", "Thank you for helping", "Thanks for the info",
+        "Thank you for the information", "That was helpful", "Very helpful",
+        "Awesome thanks", "Great thanks", "Perfect thank you", "Thanks a bunch",
+        "Many thanks", "Cheers", "Thanks mate", "Thank you very much", "Thx",
+        "Ty", "Thanks so much", "Really appreciate it", "You've been helpful",
+        "That helps", "That helped", "Thanks for that", "Thank you for that"
+      ],
+      "responses": [
+        "You're welcome! Is there anything else I can help with?",
+        "Happy to help! Let me know if you need anything else.",
+        "Anytime! Feel free to ask if you have more questions.",
+        "Glad I could assist! Anything else?"
+      ]
+    },
+    {
+      "tag": "order_status",
+      "patterns": [
+        "Where is my order", "Track my order", "Order status", "When will my order arrive",
+        "Check my order", "Order tracking", "Has my order shipped", "Where is my package",
+        "Track package", "Delivery status", "When will I receive my order", "Order update",
+        "I want to track my order", "Can you track my order", "Check order status",
+        "What's my order status", "What is the status of my order", "My order status",
+        "Find my order", "Locate my order", "Where's my stuff", "Where's my package",
+        "Did my order ship", "Has my package shipped", "When does my order arrive",
+        "Estimated delivery", "Delivery date", "When is delivery", "Track my shipment",
+        "Shipment status", "Package tracking", "Order location", "Where is my delivery",
+        "I ordered something", "Checking on my order", "Order number", "My package"
+      ],
+      "responses": [
+        "I'd be happy to help you track your order! Please provide your order number.",
+        "Let me check your order status. Could you share your order ID?",
+        "To track your order, I'll need your order number. It should be in your confirmation email.",
+        "Sure! Please provide your order number and I'll check the delivery status."
+      ]
+    },
+    {
+      "tag": "order_cancel",
+      "patterns": [
+        "Cancel my order", "I want to cancel", "Cancel order", "How to cancel order",
+        "Stop my order", "Don't want the order anymore", "Can I cancel", "Cancellation",
+        "I changed my mind", "I don't want it anymore", "Please cancel", "Cancel purchase",
+        "Cancel my purchase", "I need to cancel", "Want to cancel", "Canceling order",
+        "How do I cancel", "Cancel this order", "Remove my order", "Delete my order",
+        "I don't need this order", "Stop the order", "Halt my order", "Revoke order",
+        "Undo my order", "Take back my order", "I regret ordering", "Cancel immediately",
+        "Cancel my recent order", "Can I still cancel", "Is it too late to cancel",
+        "Cancel before shipping", "Stop shipment", "Don't ship my order"
+      ],
+      "responses": [
+        "I can help you cancel your order. Please provide your order number. Note that orders can only be canceled before shipping.",
+        "To cancel your order, I'll need your order ID. You can cancel if it hasn't shipped yet.",
+        "Sure, I can process a cancellation. What's your order number?",
+        "I'll help with the cancellation. Please share your order details."
+      ]
+    },
+    {
+      "tag": "shipping_info",
+      "patterns": [
+        "Shipping cost", "How much is shipping", "Delivery fee", "Shipping rates",
+        "Free shipping", "Delivery time", "How long does shipping take", "Shipping options",
+        "Express shipping", "Standard shipping", "International shipping", "Do you ship to",
+        "Shipping price", "Cost of delivery", "Delivery cost", "Shipping charges",
+        "What are shipping options", "Shipping methods", "How do you ship", "Delivery options",
+        "Fast shipping", "Quick delivery", "Overnight shipping", "Next day delivery",
+        "Two day shipping", "Priority shipping", "Economy shipping", "Shipping time",
+        "How long for delivery", "Delivery timeframe", "When will it arrive",
+        "Ship internationally", "Worldwide shipping", "Ship overseas", "Shipping policy",
+        "Do you deliver", "Delivery areas", "Where do you ship", "Shipping zones"
+      ],
+      "responses": [
+        "We offer free standard shipping on orders over $50! Standard delivery takes 5-7 business days, while express shipping (2-3 days) is available for $9.99.",
+        "Shipping rates: Standard (5-7 days) - $4.99, Express (2-3 days) - $9.99, Free shipping on orders over $50!",
+        "We ship nationwide! Standard delivery is 5-7 business days. Need it faster? Choose express shipping at checkout.",
+        "Delivery typically takes 5-7 business days for standard shipping. Orders over $50 qualify for free shipping!"
+      ]
+    },
+    {
+      "tag": "return_request",
+      "patterns": [
+        "Return an item", "I want to return", "How to return", "Return policy",
+        "Send back product", "Return my order", "Can I return", "Return process",
+        "Exchange item", "I want to exchange", "Product return", "Initiate return",
+        "Start a return", "Begin return", "Return this item", "Return something",
+        "How do I return", "Return instructions", "Return label", "Return shipping",
+        "I need to return", "Returning an item", "Want to return", "Make a return",
+        "Process a return", "Return request", "Return merchandise", "Send item back",
+        "Ship item back", "Return for refund", "Return for exchange", "Swap item",
+        "Exchange for different size", "Wrong size return", "Defective return",
+        "Damaged item return", "Return damaged product", "Return broken item"
+      ],
+      "responses": [
+        "We accept returns within 30 days of purchase. Please provide your order number and reason for return, and I'll initiate the process.",
+        "To start a return, I'll need your order number. Our return policy allows returns within 30 days in original condition.",
+        "I can help with your return! You have 30 days from delivery to return items. What's your order number?",
+        "Returns are easy! Share your order ID and the item you'd like to return. We'll email you a prepaid shipping label."
+      ]
+    },
+    {
+      "tag": "refund_status",
+      "patterns": [
+        "Where is my refund", "Refund status", "When will I get my refund", "Check refund",
+        "Refund not received", "Money back", "Refund timeline", "How long for refund",
+        "Waiting for refund", "Refund to my card", "Refund pending", "Get my money back",
+        "When is my refund", "Refund update", "Track my refund", "Refund progress",
+        "Has my refund been processed", "Did you process my refund", "Refund amount",
+        "Full refund", "Partial refund", "Refund to account", "Bank refund",
+        "Credit card refund", "PayPal refund", "Refund method", "How will I get refund",
+        "When will refund appear", "Refund not showing", "Missing refund", "Lost refund",
+        "Refund taking too long", "Slow refund", "Expedite refund", "Speed up refund"
+      ],
+      "responses": [
+        "Refunds are typically processed within 5-10 business days after we receive the returned item. Can I have your order number to check the status?",
+        "Let me check your refund status. Please provide your order number. Refunds usually appear in 5-10 business days.",
+        "I'll look into your refund. Once we receive your return, it takes 5-10 business days to process. What's your order ID?",
+        "Refund timelines depend on your bank. After we process it (within 3 days of receiving the return), it may take 5-7 more days to appear."
+      ]
+    },
+    {
+      "tag": "product_availability",
+      "patterns": [
+        "Is this in stock", "Product availability", "Do you have", "Out of stock",
+        "When will it be available", "Back in stock", "Check stock", "Available",
+        "Can I order this", "In stock", "Stock check", "Do you sell", "Is it available",
+        "Check availability", "Stock status", "Inventory check", "Do you carry",
+        "Is this product available", "When back in stock", "Restock date", "Notify when available",
+        "Alert me when in stock", "Stock notification", "Pre-order", "Can I pre-order",
+        "Backorder", "On backorder", "Sold out", "When will you have", "Do you have this",
+        "Looking for", "Searching for", "Need this item", "Want this product",
+        "Is the item available", "Item availability", "Check item stock"
+      ],
+      "responses": [
+        "I can check that for you! Which product are you interested in?",
+        "Let me check the availability. What product are you looking for?",
+        "To check stock, please tell me the product name or ID. I'll verify availability right away.",
+        "I'll look that up for you. What item would you like me to check?"
+      ]
+    },
+    {
+      "tag": "product_info",
+      "patterns": [
+        "Tell me about", "Product details", "What is this product", "Product information",
+        "Describe this item", "Product specs", "More info about", "What are the features",
+        "Product description", "Is this product good", "Product review", "What do you recommend",
+        "Product specifications", "Item details", "Item information", "Give me details",
+        "I want to know about", "Information about", "Details about", "Specs for",
+        "Features of", "What does it do", "How does it work", "Product quality",
+        "Is it worth it", "Should I buy", "Product comparison", "Compare products",
+        "Best product", "Top rated", "Popular items", "Bestsellers", "New arrivals",
+        "What's new", "Latest products", "Product materials", "Product dimensions",
+        "Product size", "Product weight", "Product color", "Color options"
+      ],
+      "responses": [
+        "I'd be happy to tell you more! Which product would you like information about?",
+        "Let me get those details for you. What product are you interested in?",
+        "I can provide product information. Please specify which item you'd like to know about.",
+        "Sure! Tell me the product name and I'll share all the details including specs, reviews, and features."
+      ]
+    },
+    {
+      "tag": "payment_methods",
+      "patterns": [
+        "Payment options", "How can I pay", "Payment methods", "Do you accept",
+        "Credit card", "PayPal", "Debit card", "Apple Pay", "Google Pay",
+        "Payment types", "Can I pay with", "What payments accepted", "Accepted payments",
+        "Pay by card", "Card payment", "Online payment", "Secure payment",
+        "Payment security", "Is payment safe", "Visa", "Mastercard", "Amex",
+        "American Express", "Discover card", "Bank transfer", "Wire transfer",
+        "Pay later", "Buy now pay later", "Installments", "Payment plan",
+        "Financing", "Klarna", "Afterpay", "Affirm", "Split payment",
+        "Multiple payment methods", "Combine payments", "Gift card payment"
+      ],
+      "responses": [
+        "We accept Visa, MasterCard, American Express, PayPal, Apple Pay, and Google Pay.",
+        "Payment options include: Credit/Debit cards, PayPal, Apple Pay, and Google Pay. All transactions are secure!",
+        "You can pay with any major credit card, PayPal, Apple Pay, or Google Pay. We use SSL encryption for security.",
+        "We offer multiple payment methods: Credit cards, Debit cards, PayPal, and digital wallets (Apple Pay/Google Pay)."
+      ]
+    },
+    {
+      "tag": "payment_issue",
+      "patterns": [
+        "Payment failed", "Card declined", "Transaction failed", "Payment not going through",
+        "Can't complete payment", "Payment error", "Card rejected", "Payment problem",
+        "Unable to pay", "Checkout not working", "Payment issue", "Payment didn't work",
+        "Card not working", "Can't pay", "Payment stuck", "Transaction error",
+        "Billing error", "Billing problem", "Charged twice", "Double charged",
+        "Overcharged", "Wrong amount charged", "Incorrect charge", "Unauthorized charge",
+        "Fraudulent charge", "Disputed charge", "Charge not recognized", "Payment declined",
+        "Why was my card declined", "Card keeps declining", "Fix payment", "Resolve payment",
+        "Payment help", "Checkout error", "Can't checkout", "Checkout problem"
+      ],
+      "responses": [
+        "I'm sorry you're having payment issues. Please verify your card details and ensure sufficient funds. Try again or use a different payment method.",
+        "Payment problems can occur due to incorrect card info, expired cards, or bank blocks. Double-check your details or try another card.",
+        "If your payment was declined, please check: card number, expiration date, CVV, and billing address. You can also try PayPal.",
+        "Sorry for the trouble! Try clearing your browser cache, using a different card, or contacting your bank to authorize the transaction."
+      ]
+    },
+    {
+      "tag": "discount_code",
+      "patterns": [
+        "Discount code", "Promo code", "Coupon", "Apply coupon", "Coupon not working",
+        "Discount not applied", "Promo code error", "Do you have discounts", "Any offers",
+        "Sale", "How to apply coupon", "Voucher", "Promotional code", "Discount voucher",
+        "Coupon code", "Where to enter code", "Enter promo code", "Redeem code",
+        "Use coupon", "Apply discount", "Get discount", "Find discount", "Current offers",
+        "Current promotions", "Active discounts", "Valid coupons", "Working promo codes",
+        "Best deals", "Special offers", "Limited time offer", "Flash sale", "Clearance",
+        "Percentage off", "Dollars off", "Free shipping code", "First order discount",
+        "New customer discount", "Loyalty discount", "Member discount", "Student discount"
+      ],
+      "responses": [
+        "To apply a promo code, enter it in the 'Discount Code' field at checkout. Make sure there are no extra spaces!",
+        "Having trouble with a code? Check if it's expired, meets minimum order requirements, or if items are already on sale.",
+        "You can enter discount codes at checkout. If it's not working, the code may be expired or not valid for your items.",
+        "Promo codes can be applied at checkout. Sign up for our newsletter to get 10% off your first order!"
+      ]
+    },
+    {
+      "tag": "account_help",
+      "patterns": [
+        "Reset password", "Forgot password", "Can't log in", "Update email",
+        "Change email", "Account settings", "Update my account", "Account issues",
+        "Create account", "Sign up", "Register", "Login problem", "Change my address",
+        "Password reset", "New password", "Change password", "Lost password",
+        "Forgot my password", "Can't remember password", "Login help", "Sign in help",
+        "Access my account", "Account access", "Locked out", "Account locked",
+        "Unlock account", "Verify account", "Account verification", "Update profile",
+        "Edit profile", "Change profile", "My account", "Account info", "Account details",
+        "Update address", "Change shipping address", "Billing address", "Phone number update",
+        "Delete account", "Close account", "Deactivate account"
+      ],
+      "responses": [
+        "For password reset, click 'Forgot Password' on the login page and follow the email instructions.",
+        "To update account details, log in and go to 'Account Settings'. You can change email, password, and addresses there.",
+        "I can help with account issues! For password resets, use the 'Forgot Password' link. For other changes, go to Account Settings.",
+        "Account management is easy! Visit 'My Account' to update your email, password, payment methods, and shipping addresses."
+      ]
+    },
+    {
+      "tag": "contact_human",
+      "patterns": [
+        "Talk to human", "Speak to agent", "Real person", "Customer service",
+        "Contact support", "Call you", "Phone number", "Email support", "Live chat",
+        "Human agent", "Connect me to someone", "Speak to representative", "Talk to someone",
+        "Need human help", "Want to talk to person", "Get me a human", "Transfer to agent",
+        "Escalate", "Manager", "Supervisor", "Speak to manager", "Talk to supervisor",
+        "Real human", "Actual person", "Not a bot", "Human please", "Person please",
+        "Support team", "Customer support", "Help desk", "Contact us", "Reach you",
+        "How to contact", "Support number", "Support email", "Support chat",
+        "Get help from human", "Human assistance", "Live support", "Live agent"
+      ],
+      "responses": [
+        "I'll connect you with a human agent. Our support team is available Mon-Fri 9AM-6PM. You can also email support@store.com.",
+        "For live assistance, you can call 1-800-XXX-XXXX or email support@store.com. A team member will respond shortly.",
+        "I understand you'd like to speak with someone. Our support team can be reached at support@store.com or 1-800-XXX-XXXX.",
+        "No problem! Our customer service team is here to help. Contact us at support@store.com or call 1-800-XXX-XXXX."
+      ]
+    },
+    {
+      "tag": "store_hours",
+      "patterns": [
+        "What are your hours", "When are you open", "Store hours", "Opening hours",
+        "What time do you open", "What time do you close", "Are you open now",
+        "Business hours", "Operating hours", "Working hours", "When do you close",
+        "Are you open on weekends", "Weekend hours", "Sunday hours", "Saturday hours",
+        "Holiday hours", "Are you open today", "Opening time", "Closing time",
+        "What are your working hours", "Store timings", "Shop hours", "When can I visit",
+        "Is the store open", "Are you open on holidays", "Christmas hours",
+        "New year hours", "Thanksgiving hours", "What days are you open",
+        "Are you open 24 hours", "24/7", "Late night hours", "Early morning hours"
+      ],
+      "responses": [
+        "Our online store is available 24/7! Customer service is available Monday-Friday 9AM-6PM EST.",
+        "You can shop online anytime! Our support team is here Mon-Fri 9AM-6PM EST.",
+        "We're always open for online orders. Need help? Our team is available Monday-Friday 9AM-6PM.",
+        "Shop anytime online! Customer support hours: Mon-Fri 9AM-6PM EST, closed on major holidays."
+      ]
+    },
+    {
+      "tag": "warranty",
+      "patterns": [
+        "Warranty information", "What is the warranty", "Warranty policy", "How long is warranty",
+        "Is there a warranty", "Product warranty", "Warranty coverage", "Warranty period",
+        "Does it have warranty", "Warranty included", "Extended warranty", "Warranty claim",
+        "How to claim warranty", "Warranty repair", "Warranty replacement", "Is this covered",
+        "Warranty terms", "Guarantee", "Product guarantee", "Money back guarantee",
+        "Manufacturer warranty", "Store warranty", "How does warranty work",
+        "What does warranty cover", "Warranty registration", "Register warranty",
+        "Lifetime warranty", "Limited warranty", "Warranty expiration", "Is warranty valid",
+        "Check warranty status", "Warranty support", "Defective product warranty"
+      ],
+      "responses": [
+        "Most products come with a 1-year manufacturer warranty. Extended warranty options are available at checkout.",
+        "Our products include a standard 1-year warranty against defects. Would you like details on a specific product?",
+        "Warranty covers manufacturing defects for 12 months from purchase. For claims, contact support with your order number.",
+        "We offer 1-year warranty on all products. Extended protection plans are available for purchase."
+      ]
+    },
+    {
+      "tag": "order_modify",
+      "patterns": [
+        "Change my order", "Modify order", "Update my order", "Edit order",
+        "Can I change my order", "I want to modify my order", "Change shipping address",
+        "Update shipping address", "Change delivery address", "Add item to order",
+        "Remove item from order", "Change quantity", "Update quantity", "Order modification",
+        "Can I add something to my order", "Change order details", "Amend my order",
+        "I made a mistake on my order", "Wrong address on order", "Fix my order",
+        "Correct my order", "Change payment method", "Update payment", "Switch items",
+        "Replace item in order", "Order changes", "Alter my order", "Revise order",
+        "Can I still change my order", "Is it too late to change", "Modify before shipping"
+      ],
+      "responses": [
+        "I can help modify your order if it hasn't shipped yet. Please provide your order number and what you'd like to change.",
+        "Orders can be modified before they ship. Share your order number and the changes you need.",
+        "To update your order, I'll need your order number. Changes are possible until the order is processed for shipping.",
+        "Let me help with that! Provide your order number and I'll check if modifications are still possible."
+      ]
+    },
+    {
+      "tag": "gift_card",
+      "patterns": [
+        "Gift card", "Buy gift card", "Purchase gift card", "Gift card balance",
+        "Check gift card balance", "How to use gift card", "Redeem gift card",
+        "Gift card code", "E-gift card", "Digital gift card", "Physical gift card",
+        "Gift card not working", "Gift card problem", "Gift card expired",
+        "Gift voucher", "Store credit", "Gift certificate", "Send gift card",
+        "Gift card as gift", "Gift card denominations", "How much is on my gift card",
+        "Activate gift card", "Gift card activation", "Gift card email", "Gift card delivery",
+        "Corporate gift cards", "Bulk gift cards", "Gift card refund", "Lost gift card",
+        "Can I use multiple gift cards", "Gift card terms", "Gift card restrictions"
+      ],
+      "responses": [
+        "Gift cards are available in $25, $50, $100, and custom amounts. They never expire and can be used on any purchase!",
+        "To check your gift card balance, enter the code at checkout or visit our gift card balance page.",
+        "You can purchase digital gift cards that are delivered instantly via email. Physical cards ship free!",
+        "Gift cards can be applied at checkout. Enter your gift card code in the payment section."
+      ]
+    },
+    {
+      "tag": "size_guide",
+      "patterns": [
+        "Size guide", "Sizing chart", "What size should I get", "Size recommendation",
+        "How do sizes run", "Size help", "Fit guide", "What size am I",
+        "Size chart", "Sizing information", "Do these run small", "Do these run large",
+        "True to size", "Size comparison", "Measurements", "Product dimensions",
+        "How does it fit", "Fitting guide", "Size exchange", "Wrong size",
+        "Size too small", "Size too big", "Need different size", "Size conversion",
+        "US size to EU", "International sizes", "Plus sizes", "Petite sizes",
+        "How to measure", "Size calculator", "Find my size", "Recommend a size"
+      ],
+      "responses": [
+        "You can find our detailed size guide on each product page. Click 'Size Guide' next to the size selector!",
+        "Our sizing charts include measurements in inches and centimeters. Need help? Tell me what you're looking for.",
+        "Most items run true to size. Check the product reviews for fit feedback from other customers!",
+        "For the best fit, measure yourself and compare to our size chart on the product page. Happy to help if needed!"
+      ]
+    },
+    {
+      "tag": "rewards_program",
+      "patterns": [
+        "Rewards program", "Loyalty program", "Points", "How do I earn points",
+        "Rewards balance", "Check my points", "Redeem points", "Use my points",
+        "Loyalty rewards", "Member benefits", "VIP program", "Membership",
+        "How to join rewards", "Sign up for rewards", "Rewards account",
+        "Points expiration", "Do points expire", "Earn rewards", "Bonus points",
+        "Double points", "Points promotion", "Rewards tier", "Gold member",
+        "Platinum member", "Elite status", "Member discount", "Birthday reward",
+        "Referral bonus", "Refer a friend", "Rewards perks", "Free shipping rewards"
+      ],
+      "responses": [
+        "Join our free rewards program to earn 1 point per $1 spent. 100 points = $5 off! Sign up at checkout.",
+        "Check your rewards balance in 'My Account'. Points are earned on every purchase and never expire!",
+        "Our loyalty program has 3 tiers: Silver, Gold, and Platinum. Higher tiers unlock exclusive perks and discounts!",
+        "Rewards members get early access to sales, birthday discounts, and free shipping on orders over $35!"
+      ]
+    },
+    {
+      "tag": "complaint",
+      "patterns": [
+        "I have a complaint", "I want to complain", "Bad experience", "Terrible service",
+        "Unhappy with", "Disappointed", "Not satisfied", "Poor quality",
+        "This is unacceptable", "I'm frustrated", "Very upset", "Horrible",
+        "Worst experience", "Never shopping here again", "Want to file complaint",
+        "Speak to manager about complaint", "This is ridiculous", "Unacceptable service",
+        "I'm angry", "Fed up", "Had enough", "This is wrong", "You messed up",
+        "Big mistake", "Ruined", "Damaged my order", "Lost my order",
+        "Incompetent", "Useless", "Waste of time", "Terrible quality"
+      ],
+      "responses": [
+        "I'm truly sorry to hear about your experience. Your feedback is important to us. Please share details so I can help resolve this.",
+        "I apologize for any frustration. Let me connect you with our customer care team who can address this properly.",
+        "We're sorry things didn't go as expected. Please share your order number and I'll escalate this to our support team immediately.",
+        "I understand your frustration and sincerely apologize. Let's work together to make this right. What happened?"
+      ]
+    },
+    {
+      "tag": "positive_feedback",
+      "patterns": [
+        "Great service", "Excellent", "Amazing", "Love it", "Perfect",
+        "You're the best", "Fantastic", "Wonderful", "Great job", "Well done",
+        "Very happy", "Satisfied", "Impressed", "Exceeded expectations",
+        "Best purchase", "Highly recommend", "Five stars", "Love shopping here",
+        "Great experience", "Smooth transaction", "Fast delivery", "Quality product",
+        "Will buy again", "Loyal customer", "Best customer service", "Thank you so much",
+        "Appreciate your help", "You've been great", "Awesome", "Outstanding"
+      ],
+      "responses": [
+        "Thank you so much for the kind words! We're thrilled you had a great experience!",
+        "We really appreciate your feedback! It means a lot to our team.",
+        "Thank you! We're so glad we could help. Don't hesitate to reach out anytime!",
+        "Your kind words made our day! Thank you for being a valued customer."
+      ]
+    },
+    {
+      "tag": "bulk_orders",
+      "patterns": [
+        "Bulk order", "Wholesale", "Large quantity", "Business order",
+        "Corporate order", "Buy in bulk", "Bulk discount", "Wholesale pricing",
+        "Large order discount", "Quantity discount", "Order for company",
+        "Team order", "Group order", "Bulk purchase", "Volume discount",
+        "Wholesale account", "Reseller", "Business account", "B2B",
+        "Trade account", "Bulk pricing", "Large quantity pricing", "Corporate discount",
+        "Bulk shipping", "Pallet order", "Case quantity", "Minimum order quantity"
+      ],
+      "responses": [
+        "For bulk orders over 50 units, we offer special pricing. Contact our B2B team at business@store.com.",
+        "Wholesale accounts get 15-30% off depending on volume. Apply for a business account on our website!",
+        "We'd love to help with your bulk order! Orders over $500 qualify for volume discounts. Let me get you details.",
+        "Corporate and bulk orders are welcome! Email business@store.com with your requirements for a custom quote."
+      ]
+    },
+    {
+      "tag": "subscription",
+      "patterns": [
+        "Subscribe", "Subscription", "Auto delivery", "Subscribe and save",
+        "Recurring order", "Monthly delivery", "Cancel subscription", "Pause subscription",
+        "Manage subscription", "Change subscription", "Subscription discount",
+        "How does subscription work", "Subscription frequency", "Skip delivery",
+        "Subscription benefits", "Auto replenish", "Automatic reorder",
+        "Regular delivery", "Subscription box", "Monthly box", "Unsubscribe",
+        "Stop subscription", "Subscription settings", "Update subscription",
+        "Subscription price", "Subscription savings", "Modify subscription"
+      ],
+      "responses": [
+        "Subscribe & Save gets you 15% off and free shipping on recurring orders! You can pause or cancel anytime.",
+        "Manage your subscription in 'My Account'. You can skip deliveries, change frequency, or cancel with one click.",
+        "Our subscription service delivers your favorites automatically. Choose weekly, monthly, or custom intervals!",
+        "To cancel or modify your subscription, go to My Account > Subscriptions. Changes take effect on your next order."
+      ]
+    },
+    {
+      "tag": "technical_support",
+      "patterns": [
+        "Technical help", "Tech support", "Product not working", "How to use",
+        "Setup help", "Installation", "Assembly instructions", "User manual",
+        "Troubleshooting", "Product issue", "Defective", "Broken", "Not functioning",
+        "Doesn't work", "Help with setup", "Configuration", "How to install",
+        "Setup instructions", "Assembly help", "Product malfunction", "Error message",
+        "Technical issue", "Technical problem", "Needs repair", "Fix my product",
+        "Product stopped working", "Won't turn on", "Not charging", "Battery issue"
+      ],
+      "responses": [
+        "I can help with technical issues! Please describe the problem and include your product name/model if possible.",
+        "For setup help, check the Quick Start Guide included with your product. Need more help? Describe the issue!",
+        "User manuals and troubleshooting guides are available on our Support page. What product are you having trouble with?",
+        "Sorry to hear you're having issues! Let me know the product and problem, and I'll help troubleshoot or arrange a replacement."
+      ]
+    },
+    {
+      "tag": "privacy_security",
+      "patterns": [
+        "Privacy policy", "Data privacy", "Personal information", "How is my data used",
+        "Delete my data", "Remove my account", "Security", "Is it secure",
+        "Safe to shop", "Payment security", "SSL", "Encryption", "Data protection",
+        "GDPR", "Privacy rights", "Cookie policy", "Tracking", "Do you sell my data",
+        "Third party data", "Data retention", "Account security", "Two factor authentication",
+        "2FA", "Password security", "Secure checkout", "Is my card safe",
+        "Fraud protection", "Identity protection", "Data breach"
+      ],
+      "responses": [
+        "Your privacy is important to us. We never sell your data. View our full Privacy Policy in the footer.",
+        "All transactions are protected with 256-bit SSL encryption. Your payment info is never stored on our servers.",
+        "We're GDPR compliant. You can request data deletion anytime by emailing privacy@store.com.",
+        "Security features include encrypted checkout, fraud monitoring, and optional 2FA for your account."
+      ]
+    },
+    {
+      "tag": "newsletter",
+      "patterns": [
+        "Newsletter", "Email signup", "Subscribe to emails", "Email list",
+        "Mailing list", "Get updates", "Sign up for emails", "Promotional emails",
+        "Unsubscribe from emails", "Stop emails", "Email preferences", "Too many emails",
+        "Email notifications", "Marketing emails", "News updates", "Product updates",
+        "Sale notifications", "Email frequency", "Manage email preferences",
+        "Newsletter discount", "Signup discount", "First order discount email"
+      ],
+      "responses": [
+        "Sign up for our newsletter and get 10% off your first order! Enter your email at the bottom of any page.",
+        "To unsubscribe, click 'Unsubscribe' at the bottom of any email, or manage preferences in your account settings.",
+        "Newsletter subscribers get exclusive deals, early sale access, and new product announcements!",
+        "You can customize email preferences in My Account > Email Settings. Choose what you want to receive!"
+      ]
+    },
+    {
+      "tag": "fallback",
+      "patterns": [],
+      "responses": [
+        "I'm not sure I understand. Could you rephrase that?",
+        "I didn't quite get that. Can you ask in a different way?",
+        "Sorry, I'm not sure how to help with that. You can try asking about orders, shipping, returns, or products.",
+        "I'm still learning! Could you try asking differently, or type 'help' to see what I can do?"
+      ]
+    }
+  ]
+}
