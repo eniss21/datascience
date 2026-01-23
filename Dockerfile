@@ -16,23 +16,8 @@ RUN pip install --no-cache-dir --upgrade pip && \
 # Download NLTK data
 RUN python -c "import nltk; nltk.download('punkt'); nltk.download('wordnet'); nltk.download('stopwords'); nltk.download('punkt_tab')"
 
-# Copy application code
+# Copy application code (including pre-trained models)
 COPY . .
-
-# Create models directory
-RUN mkdir -p models
-
-# Train models during build (optional - remove if you want to mount pre-trained models)
-RUN python -c "\
-import sys; sys.path.insert(0, '.'); \
-from config import *; \
-from src.models.tfidf_classifier import TFIDFClassifier; \
-from src.models.semantic_classifier import SemanticClassifier; \
-from src.models.rnn_classifier import RNNIntentClassifier; \
-tfidf = TFIDFClassifier(); tfidf.train(str(INTENTS_PATH)); tfidf.save(str(TFIDF_MODEL_PATH)); \
-semantic = SemanticClassifier(); semantic.train(str(INTENTS_PATH)); semantic.save(str(SEMANTIC_MODEL_PATH)); \
-rnn = RNNIntentClassifier(); rnn.train(str(INTENTS_PATH), epochs=100); rnn.save(str(RNN_MODEL_PATH)); \
-print('All models trained!')"
 
 # Expose port
 EXPOSE 8000

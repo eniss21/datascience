@@ -145,11 +145,6 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 
-# Trained model files (regenerate with training script)
-models/*.joblib
-models/*.pt
-models/*.pkl
-
 # NLTK data (downloaded automatically)
 nltk_data/
 
