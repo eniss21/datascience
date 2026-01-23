@@ -2,86 +2,88 @@
 // E-commerce Support Chatbot - JavaScript
 // ========================================
 
-// Configuration
-const API_BASE_URL = 'http://localhost:8000';
-let currentModel = 'tfidf';
+// Configuration - use relative URL for deployment compatibility
+const API_BASE_URL = "";
+// const API_BASE_URL = 'http://localhost:8000';
+
+let currentModel = "tfidf";
 let showDebug = false;
 let hasMessages = false;
 
 // DOM Elements
 const elements = {
-    chatMessages: null,
-    userInput: null,
-    sendButton: null,
-    sidebar: null,
-    overlay: null,
-    debugDrawer: null,
-    debugToggle: null,
-    debugContent: null,
-    statusIndicator: null,
-    welcomeSection: null,
-    mobileModelBadge: null
+  chatMessages: null,
+  userInput: null,
+  sendButton: null,
+  sidebar: null,
+  overlay: null,
+  debugDrawer: null,
+  debugToggle: null,
+  debugContent: null,
+  statusIndicator: null,
+  welcomeSection: null,
+  mobileModelBadge: null,
 };
 
 // ========================================
 // Initialization
 // ========================================
 
-document.addEventListener('DOMContentLoaded', function() {
-    initializeElements();
-    loadModelPreference();
-    setupEventListeners();
-    checkAPIHealth();
-    elements.userInput.focus();
+document.addEventListener("DOMContentLoaded", function () {
+  initializeElements();
+  loadModelPreference();
+  setupEventListeners();
+  checkAPIHealth();
+  elements.userInput.focus();
 });
 
 function initializeElements() {
-    elements.chatMessages = document.getElementById('chatMessages');
-    elements.userInput = document.getElementById('userInput');
-    elements.sendButton = document.getElementById('sendButton');
-    elements.sidebar = document.getElementById('sidebar');
-    elements.overlay = document.getElementById('overlay');
-    elements.debugDrawer = document.getElementById('debugDrawer');
-    elements.debugToggle = document.getElementById('debugToggle');
-    elements.debugContent = document.getElementById('debugContent');
-    elements.statusIndicator = document.getElementById('statusIndicator');
-    elements.welcomeSection = document.getElementById('welcomeSection');
-    elements.mobileModelBadge = document.getElementById('mobileModelBadge');
+  elements.chatMessages = document.getElementById("chatMessages");
+  elements.userInput = document.getElementById("userInput");
+  elements.sendButton = document.getElementById("sendButton");
+  elements.sidebar = document.getElementById("sidebar");
+  elements.overlay = document.getElementById("overlay");
+  elements.debugDrawer = document.getElementById("debugDrawer");
+  elements.debugToggle = document.getElementById("debugToggle");
+  elements.debugContent = document.getElementById("debugContent");
+  elements.statusIndicator = document.getElementById("statusIndicator");
+  elements.welcomeSection = document.getElementById("welcomeSection");
+  elements.mobileModelBadge = document.getElementById("mobileModelBadge");
 }
 
 function setupEventListeners() {
-    // Input enter key
-    elements.userInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();
-            sendMessage();
-        }
-    });
+  // Input enter key
+  elements.userInput.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
 
-    // Model selection
-    document.querySelectorAll('input[name="model"]').forEach(radio => {
-        radio.addEventListener('change', function() {
-            switchModel(this.value);
-        });
+  // Model selection
+  document.querySelectorAll('input[name="model"]').forEach((radio) => {
+    radio.addEventListener("change", function () {
+      switchModel(this.value);
     });
+  });
 
-    // Debug toggle
-    elements.debugToggle.addEventListener('change', function() {
-        showDebug = this.checked;
-        if (showDebug) {
-            elements.debugDrawer.classList.add('open');
-        } else {
-            elements.debugDrawer.classList.remove('open');
-        }
-    });
+  // Debug toggle
+  elements.debugToggle.addEventListener("change", function () {
+    showDebug = this.checked;
+    if (showDebug) {
+      elements.debugDrawer.classList.add("open");
+    } else {
+      elements.debugDrawer.classList.remove("open");
+    }
+  });
 
-    // Close sidebar on escape
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeSidebar();
-            closeDebug();
-        }
-    });
+  // Close sidebar on escape
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      closeSidebar();
+      closeDebug();
+    }
+  });
 }
 
 // ========================================
@@ -89,40 +91,42 @@ function setupEventListeners() {
 // ========================================
 
 function loadModelPreference() {
-    const savedModel = localStorage.getItem('chatbotModel') || 'tfidf';
-    currentModel = savedModel;
+  const savedModel = localStorage.getItem("chatbotModel") || "tfidf";
+  currentModel = savedModel;
 
-    // Update radio button
-    const radio = document.querySelector(`input[name="model"][value="${savedModel}"]`);
-    if (radio) {
-        radio.checked = true;
-    }
+  // Update radio button
+  const radio = document.querySelector(
+    `input[name="model"][value="${savedModel}"]`,
+  );
+  if (radio) {
+    radio.checked = true;
+  }
 
-    updateModelBadge();
+  updateModelBadge();
 }
 
 function switchModel(model) {
-    currentModel = model;
-    localStorage.setItem('chatbotModel', model);
-    updateModelBadge();
+  currentModel = model;
+  localStorage.setItem("chatbotModel", model);
+  updateModelBadge();
 
-    // Show notification
-    addSystemMessage(`Switched to ${getModelDisplayName(model)} model`);
+  // Show notification
+  addSystemMessage(`Switched to ${getModelDisplayName(model)} model`);
 }
 
 function getModelDisplayName(model) {
-    const names = {
-        'tfidf': 'TF-IDF',
-        'semantic': 'Semantic',
-        'rnn': 'RNN'
-    };
-    return names[model] || model;
+  const names = {
+    tfidf: "TF-IDF",
+    semantic: "Semantic",
+    rnn: "RNN",
+  };
+  return names[model] || model;
 }
 
 function updateModelBadge() {
-    if (elements.mobileModelBadge) {
-        elements.mobileModelBadge.textContent = getModelDisplayName(currentModel);
-    }
+  if (elements.mobileModelBadge) {
+    elements.mobileModelBadge.textContent = getModelDisplayName(currentModel);
+  }
 }
 
 // ========================================
@@ -130,34 +134,40 @@ function updateModelBadge() {
 // ========================================
 
 async function checkAPIHealth() {
-    const statusText = elements.statusIndicator.querySelector('.status-text');
+  const statusText = elements.statusIndicator.querySelector(".status-text");
 
-    try {
-        const response = await fetch(`${API_BASE_URL}/health`);
-        const data = await response.json();
+  try {
+    const response = await fetch(`${API_BASE_URL}/health`);
+    const data = await response.json();
 
-        elements.statusIndicator.classList.remove('offline');
-        elements.statusIndicator.classList.add('online');
+    elements.statusIndicator.classList.remove("offline");
+    elements.statusIndicator.classList.add("online");
 
-        // Check if any models are loaded (new format: models_loaded dict, old format: model_loaded bool)
-        const hasModels = data.models_loaded
-            ? Object.keys(data.models_loaded).length > 0
-            : data.model_loaded;
+    // Check if any models are loaded (new format: models_loaded dict, old format: model_loaded bool)
+    const hasModels = data.models_loaded
+      ? Object.keys(data.models_loaded).length > 0
+      : data.model_loaded;
 
-        if (hasModels) {
-            const modelCount = data.models_loaded ? Object.keys(data.models_loaded).length : 1;
-            statusText.textContent = `Connected (${modelCount} models)`;
-        } else {
-            statusText.textContent = 'No models loaded';
-            addSystemMessage('Warning: No models loaded on server. Make sure the API is running and models are trained.');
-        }
-    } catch (error) {
-        elements.statusIndicator.classList.remove('online');
-        elements.statusIndicator.classList.add('offline');
-        statusText.textContent = 'Disconnected';
-        addSystemMessage('Cannot connect to API server. Make sure it\'s running on ' + API_BASE_URL);
-        console.error('API health check failed:', error);
+    if (hasModels) {
+      const modelCount = data.models_loaded
+        ? Object.keys(data.models_loaded).length
+        : 1;
+      statusText.textContent = `Connected (${modelCount} models)`;
+    } else {
+      statusText.textContent = "No models loaded";
+      addSystemMessage(
+        "Warning: No models loaded on server. Make sure the API is running and models are trained.",
+      );
     }
+  } catch (error) {
+    elements.statusIndicator.classList.remove("online");
+    elements.statusIndicator.classList.add("offline");
+    statusText.textContent = "Disconnected";
+    addSystemMessage(
+      "Cannot connect to API server. Make sure it's running on " + API_BASE_URL,
+    );
+    console.error("API health check failed:", error);
+  }
 }
 
 // ========================================
@@ -165,77 +175,81 @@ async function checkAPIHealth() {
 // ========================================
 
 function sendQuickMessage(message) {
-    elements.userInput.value = message;
-    sendMessage();
+  elements.userInput.value = message;
+  sendMessage();
 }
 
 async function sendMessage() {
-    const message = elements.userInput.value.trim();
+  const message = elements.userInput.value.trim();
 
-    if (!message) return;
+  if (!message) return;
 
-    // Hide welcome section on first message
-    if (!hasMessages && elements.welcomeSection) {
-        elements.welcomeSection.style.display = 'none';
-        hasMessages = true;
+  // Hide welcome section on first message
+  if (!hasMessages && elements.welcomeSection) {
+    elements.welcomeSection.style.display = "none";
+    hasMessages = true;
+  }
+
+  // Disable input
+  setInputState(false);
+
+  // Add user message
+  addUserMessage(message);
+
+  // Clear input
+  elements.userInput.value = "";
+
+  // Show typing indicator
+  const typingId = addTypingIndicator();
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/chat`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message: message, model_type: currentModel }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    // Disable input
-    setInputState(false);
+    const data = await response.json();
 
-    // Add user message
-    addUserMessage(message);
+    // Remove typing indicator
+    removeTypingIndicator(typingId);
 
-    // Clear input
-    elements.userInput.value = '';
+    // Add bot response
+    addBotMessage(
+      data.response,
+      data.intent,
+      data.confidence,
+      data.is_fallback,
+    );
 
-    // Show typing indicator
-    const typingId = addTypingIndicator();
-
-    try {
-        const response = await fetch(`${API_BASE_URL}/chat`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ message: message, model_type: currentModel })
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        // Remove typing indicator
-        removeTypingIndicator(typingId);
-
-        // Add bot response
-        addBotMessage(data.response, data.intent, data.confidence, data.is_fallback);
-
-        // Fetch debug info if enabled
-        if (showDebug) {
-            await fetchDebugInfo(message);
-        }
-
-    } catch (error) {
-        removeTypingIndicator(typingId);
-        addBotMessage(
-            'Sorry, I encountered an error. Please make sure the API server is running.',
-            'error',
-            0,
-            true
-        );
-        console.error('Error sending message:', error);
-    } finally {
-        setInputState(true);
-        elements.userInput.focus();
+    // Fetch debug info if enabled
+    if (showDebug) {
+      await fetchDebugInfo(message);
     }
+  } catch (error) {
+    removeTypingIndicator(typingId);
+    addBotMessage(
+      "Sorry, I encountered an error. Please make sure the API server is running.",
+      "error",
+      0,
+      true,
+    );
+    console.error("Error sending message:", error);
+  } finally {
+    setInputState(true);
+    elements.userInput.focus();
+  }
 }
 
 function setInputState(enabled) {
-    elements.sendButton.disabled = !enabled;
-    elements.userInput.disabled = !enabled;
+  elements.sendButton.disabled = !enabled;
+  elements.userInput.disabled = !enabled;
 }
 
 // ========================================
@@ -243,12 +257,12 @@ function setInputState(enabled) {
 // ========================================
 
 function addUserMessage(message) {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = 'message user';
+  const messageDiv = document.createElement("div");
+  messageDiv.className = "message user";
 
-    const timestamp = formatTime(new Date());
+  const timestamp = formatTime(new Date());
 
-    messageDiv.innerHTML = `
+  messageDiv.innerHTML = `
         <div class="message-bubble">
             <p class="message-text">${escapeHtml(message)}</p>
             <div class="message-meta">
@@ -257,27 +271,27 @@ function addUserMessage(message) {
         </div>
     `;
 
-    elements.chatMessages.appendChild(messageDiv);
-    scrollToBottom();
+  elements.chatMessages.appendChild(messageDiv);
+  scrollToBottom();
 }
 
 function addBotMessage(message, intent, confidence, isFallback) {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = 'message bot';
+  const messageDiv = document.createElement("div");
+  messageDiv.className = "message bot";
 
-    const timestamp = formatTime(new Date());
-    const confidenceClass = getConfidenceClass(confidence);
-    const confidencePercent = (confidence * 100).toFixed(1);
+  const timestamp = formatTime(new Date());
+  const confidenceClass = getConfidenceClass(confidence);
+  const confidencePercent = (confidence * 100).toFixed(1);
 
-    let metaContent = `
+  let metaContent = `
         <span class="intent-badge">${intent}</span>
         <span class="confidence-badge ${confidenceClass}">${confidencePercent}%</span>
         <span class="timestamp">${timestamp}</span>
     `;
 
-    let fallbackAlert = '';
-    if (isFallback) {
-        fallbackAlert = `
+  let fallbackAlert = "";
+  if (isFallback) {
+    fallbackAlert = `
             <div class="fallback-alert">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="12" cy="12" r="10"/>
@@ -287,9 +301,9 @@ function addBotMessage(message, intent, confidence, isFallback) {
                 Low confidence - fallback response
             </div>
         `;
-    }
+  }
 
-    messageDiv.innerHTML = `
+  messageDiv.innerHTML = `
         <div class="message-bubble">
             <p class="message-text">${escapeHtml(message)}</p>
             <div class="message-meta">
@@ -299,30 +313,30 @@ function addBotMessage(message, intent, confidence, isFallback) {
         </div>
     `;
 
-    elements.chatMessages.appendChild(messageDiv);
-    scrollToBottom();
+  elements.chatMessages.appendChild(messageDiv);
+  scrollToBottom();
 }
 
 function addSystemMessage(message) {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = 'message system';
+  const messageDiv = document.createElement("div");
+  messageDiv.className = "message system";
 
-    messageDiv.innerHTML = `
+  messageDiv.innerHTML = `
         <div class="message-bubble">
             <p class="message-text">${escapeHtml(message)}</p>
         </div>
     `;
 
-    elements.chatMessages.appendChild(messageDiv);
-    scrollToBottom();
+  elements.chatMessages.appendChild(messageDiv);
+  scrollToBottom();
 }
 
 function addTypingIndicator() {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = 'message bot';
-    messageDiv.id = 'typing-indicator';
+  const messageDiv = document.createElement("div");
+  messageDiv.className = "message bot";
+  messageDiv.id = "typing-indicator";
 
-    messageDiv.innerHTML = `
+  messageDiv.innerHTML = `
         <div class="message-bubble">
             <div class="typing-indicator">
                 <span></span>
@@ -332,16 +346,16 @@ function addTypingIndicator() {
         </div>
     `;
 
-    elements.chatMessages.appendChild(messageDiv);
-    scrollToBottom();
-    return 'typing-indicator';
+  elements.chatMessages.appendChild(messageDiv);
+  scrollToBottom();
+  return "typing-indicator";
 }
 
 function removeTypingIndicator(id) {
-    const indicator = document.getElementById(id);
-    if (indicator) {
-        indicator.remove();
-    }
+  const indicator = document.getElementById(id);
+  if (indicator) {
+    indicator.remove();
+  }
 }
 
 // ========================================
@@ -349,40 +363,44 @@ function removeTypingIndicator(id) {
 // ========================================
 
 async function fetchDebugInfo(message) {
-    try {
-        const response = await fetch(`${API_BASE_URL}/chat/debug`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ message: message, model_type: currentModel })
-        });
+  try {
+    const response = await fetch(`${API_BASE_URL}/chat/debug`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message: message, model_type: currentModel }),
+    });
 
-        if (response.ok) {
-            const data = await response.json();
-            displayDebugInfo(data);
-        }
-    } catch (error) {
-        console.error('Error fetching debug info:', error);
+    if (response.ok) {
+      const data = await response.json();
+      displayDebugInfo(data);
     }
+  } catch (error) {
+    console.error("Error fetching debug info:", error);
+  }
 }
 
 function displayDebugInfo(data) {
-    elements.debugContent.innerHTML = `
-        <pre>${JSON.stringify({
+  elements.debugContent.innerHTML = `
+        <pre>${JSON.stringify(
+          {
             message: data.message,
             selected_intent: data.selected_intent,
             confidence: data.confidence.toFixed(4),
             top_intents: data.top_intents,
-            response: data.response
-        }, null, 2)}</pre>
+            response: data.response,
+          },
+          null,
+          2,
+        )}</pre>
     `;
 }
 
 function closeDebug() {
-    elements.debugDrawer.classList.remove('open');
-    elements.debugToggle.checked = false;
-    showDebug = false;
+  elements.debugDrawer.classList.remove("open");
+  elements.debugToggle.checked = false;
+  showDebug = false;
 }
 
 // ========================================
@@ -390,13 +408,13 @@ function closeDebug() {
 // ========================================
 
 function toggleSidebar() {
-    elements.sidebar.classList.toggle('open');
-    elements.overlay.classList.toggle('visible');
+  elements.sidebar.classList.toggle("open");
+  elements.overlay.classList.toggle("visible");
 }
 
 function closeSidebar() {
-    elements.sidebar.classList.remove('open');
-    elements.overlay.classList.remove('visible');
+  elements.sidebar.classList.remove("open");
+  elements.overlay.classList.remove("visible");
 }
 
 // ========================================
@@ -404,11 +422,11 @@ function closeSidebar() {
 // ========================================
 
 function clearChat() {
-    if (!confirm('Clear all messages?')) return;
+  if (!confirm("Clear all messages?")) return;
 
-    hasMessages = false;
+  hasMessages = false;
 
-    elements.chatMessages.innerHTML = `
+  elements.chatMessages.innerHTML = `
         <div class="welcome-section" id="welcomeSection">
             <div class="welcome-icon">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -455,7 +473,7 @@ function clearChat() {
         </div>
     `;
 
-    elements.welcomeSection = document.getElementById('welcomeSection');
+  elements.welcomeSection = document.getElementById("welcomeSection");
 }
 
 // ========================================
@@ -463,21 +481,21 @@ function clearChat() {
 // ========================================
 
 function getConfidenceClass(confidence) {
-    if (confidence >= 0.7) return 'confidence-high';
-    if (confidence >= 0.4) return 'confidence-medium';
-    return 'confidence-low';
+  if (confidence >= 0.7) return "confidence-high";
+  if (confidence >= 0.4) return "confidence-medium";
+  return "confidence-low";
 }
 
 function scrollToBottom() {
-    elements.chatMessages.scrollTop = elements.chatMessages.scrollHeight;
+  elements.chatMessages.scrollTop = elements.chatMessages.scrollHeight;
 }
 
 function formatTime(date) {
-    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 }
 
 function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
 }
