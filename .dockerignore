@@ -1,39 +1,46 @@
 # Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
+
+**pycache**/
+_.py[cod]
+_$py.class
+_.so
 .Python
-*.egg-info/
+_.egg-info/
 .eggs/
-*.egg
+\*.egg
 
 # Virtual environments
+
 venv/
 env/
 .venv/
 
 # IDE
+
 .vscode/
 .idea/
-*.swp
-*.swo
+_.swp
+_.swo
 
 # Git
+
 .git/
 .gitignore
 
 # Testing
+
 .pytest_cache/
 .coverage
 htmlcov/
 
 # Misc
-*.log
-*.tmp
+
+_.log
+_.tmp
 .DS_Store
 Thumbs.db
 
 # Documentation
-*.md
+
+\*.md
 !README.md

@@ -8,8 +8,8 @@ nltk>=3.8.0
 gensim>=4.3.0
 sentence-transformers>=2.2.0
 
-# Deep Learning - PyTorch
-torch>=2.0.0
+# Deep Learning - PyTorch (installed separately in Dockerfile for CPU-only version)
+# torch>=2.0.0
 
 # API
 fastapi>=0.100.0
